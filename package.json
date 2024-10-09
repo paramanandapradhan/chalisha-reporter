@@ -1,6 +1,6 @@
 {
   "name": "@cloudparker/chalisha-reporter",
-  "version": "0.0.13",
+  "version": "0.0.15",
   "description": "A custom reporter for playwright automation library",
   "scripts": {
     "build": "tsc",

@@ -264,6 +264,7 @@ export class ChalishaReporter implements Reporter {
             duration: step.duration,
             location: step.location ? `${path.relative(this.projectRoot, step.location.file)}:${step.location.line}` : '',
             steps: this.captureNestedSteps(step.steps || [], level + 1), // Recursively capture nested steps
+            error: !!step.error
         }));
     }
 
