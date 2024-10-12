@@ -181,6 +181,7 @@ export class ChalishaReporter implements Reporter {
 
         const resultContent = {
             appName: this.appName,
+            reportDir: this.reportDir,
             runId: this.runId,
             startTime: this.startTime.toISOString(),
             duration: new Date().getTime() - this.startTime.getTime(), // Duration in milliseconds
