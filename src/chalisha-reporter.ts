@@ -37,6 +37,7 @@ interface StepDetails {
 }
 
 export class ChalishaReporter implements Reporter {
+    private appName?: string;
     private reportDir: string;
     private runId: string; // Store the UUID for this test run
     private passedCount: number = 0;
@@ -62,6 +63,7 @@ export class ChalishaReporter implements Reporter {
         this.runId = uuidv4(); // Generate a unique UUID for this test run
         this.startTime = new Date(); // Track the start time of the test run
         this.hostAppPackageJson = this.getHostAppPackageJson();
+        this.appName = this.hostAppPackageJson?.name || '';
 
         // Ensure that the directory exists before writing the file
         const outputDir = path.resolve(this.projectRoot, this.reportDir);
@@ -178,6 +180,7 @@ export class ChalishaReporter implements Reporter {
 
 
         const resultContent = {
+            appName: this.appName,
             runId: this.runId,
             startTime: this.startTime.toISOString(),
             duration: new Date().getTime() - this.startTime.getTime(), // Duration in milliseconds
