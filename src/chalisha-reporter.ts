@@ -57,7 +57,7 @@ export class ChalishaReporter implements Reporter {
 
     constructor(options: ChalishaReporterOptions) {
         this.options = options;
-        this.reportDir = options.reportDir || 'reports/chalisha-reporter/';
+        this.reportDir = this.cleanPath(options.reportDir || 'reports/chalisha-reporter/');
         this.reportFileName = options.reportFileName || 'report.json';
         this.resultFileName = options.resultFileName || 'result.json';
         this.runId = uuidv4(); // Generate a unique UUID for this test run
@@ -288,6 +288,10 @@ export class ChalishaReporter implements Reporter {
             console.error(`Error finding or reading the main application's package.json: ${error.message}`);
             return null;
         }
+    }
+
+    private cleanPath(path: string): string {
+        return path.replace(/^\/+|\/+$/g, ''); // Removes leading and trailing slashes
     }
 }
 
